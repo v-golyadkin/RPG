@@ -101,7 +101,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatsGroup stats;
-    [SerializeField] ValuePool lifePool;
+    public ValuePool lifePool;
 
     private void Start()
     {
