@@ -13,7 +13,7 @@ public class AttackHandler : MonoBehaviour
     Animator animator;
     CharacterMovement characterMovement;
 
-    InteractableObject target;
+    Character target;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class AttackHandler : MonoBehaviour
         }
     }
 
-    internal void Attack(InteractableObject target)
+    internal void Attack(Character target)
     {
         this.target = target;
 
@@ -61,9 +61,7 @@ public class AttackHandler : MonoBehaviour
             characterMovement.Stop();
             animator.SetTrigger("Attack");
 
-            Character targetCharacterToAttack = target.GetComponent<Character>();
-
-            targetCharacterToAttack.TakeDamage(character.TakeStats(Statistic.Damage).integer_value);
+            target.TakeDamage(character.TakeStats(Statistic.Damage).integer_value);
 
             target = null;
         }
