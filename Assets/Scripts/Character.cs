@@ -7,19 +7,30 @@ public enum Statistic
 {
     Life,
     Damage,
-    Armor
+    Armor,
+    AttackSpeed
 }
 
 [Serializable]
 public class StatsValue
 {
     public Statistic statisticType;
-    public int value;
+    public bool typeFloat;
+    public int integer_value;
+
+    public float float_value;
 
     public StatsValue(Statistic statisticType, int value = 0)
     {
         this.statisticType = statisticType;
-        this.value = value;
+        this.integer_value = value;
+    }
+
+    public StatsValue(Statistic statisticType, float float_value)
+    {
+        this.statisticType = statisticType;
+        this.float_value = float_value;
+        typeFloat = true;
     }
 }
 
@@ -38,6 +49,7 @@ public class StatsGroup
         stats.Add(new StatsValue(Statistic.Life, 100));
         stats.Add(new StatsValue(Statistic.Damage, 20));
         stats.Add(new StatsValue(Statistic.Armor, 5));
+        stats.Add(new StatsValue(Statistic.AttackSpeed, 1f));
     }
 
     internal StatsValue Get(Statistic statisticToGet)
@@ -93,7 +105,7 @@ public class ValuePool
     public ValuePool(StatsValue maxValue) 
     { 
         this.maxValue = maxValue;
-        this.currentValue = maxValue.value;
+        this.currentValue = maxValue.integer_value;
     }
 }
 
@@ -127,7 +139,7 @@ public class Character : MonoBehaviour
 
     private int ApplyDefence(int damage)
     {
-        damage -= stats.Get(Statistic.Armor).value;
+        damage -= stats.Get(Statistic.Armor).integer_value;
 
         if (damage <= 0)
         {
