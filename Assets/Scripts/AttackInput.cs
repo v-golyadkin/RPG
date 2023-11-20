@@ -17,10 +17,17 @@ public class AttackInput : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if(interactInput.hoveringOverCharacter != null)
-            {
-                attackedHandler.Attack(interactInput.hoveringOverCharacter);
-            }
+
         }
+    }
+
+    public void Attack()
+    {
+        attackedHandler.Attack(interactInput.hoveringOverCharacter);
+    }
+
+    public bool AttackCheck()
+    {
+        return interactInput.hoveringOverCharacter != null;
     }
 }
