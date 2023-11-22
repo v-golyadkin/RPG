@@ -8,7 +8,8 @@ public enum Statistic
     Life,
     Damage,
     Armor,
-    AttackSpeed
+    AttackSpeed,
+    MoveSpeed
 }
 
 [Serializable]
@@ -50,6 +51,7 @@ public class StatsGroup
         stats.Add(new StatsValue(Statistic.Damage, 20));
         stats.Add(new StatsValue(Statistic.Armor, 5));
         stats.Add(new StatsValue(Statistic.AttackSpeed, 1f));
+        stats.Add(new StatsValue(Statistic.MoveSpeed, 1f));
     }
 
     internal StatsValue Get(Statistic statisticToGet)
