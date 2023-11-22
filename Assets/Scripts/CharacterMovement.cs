@@ -8,7 +8,9 @@ public class CharacterMovement : MonoBehaviour
 {
     NavMeshAgent agent;
     Character character;
-    [SerializeField] float default_MoveSpeed = 3.5f; 
+    [SerializeField] float default_MoveSpeed = 3f;
+    float current_MoveSpeed;
+    StatsValue moveSpeed;
 
     private void Awake()
     {
@@ -18,8 +20,22 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        float moveSpeed = character.TakeStats(Statistic.MoveSpeed).float_value;    
-        agent.speed = default_MoveSpeed * moveSpeed;
+        moveSpeed = character.TakeStats(Statistic.MoveSpeed);
+        UpdateMoveSpeed();
+    }
+
+    private void UpdateMoveSpeed()
+    {
+        agent.speed = default_MoveSpeed * moveSpeed.float_value;
+    }
+
+    private void Update()
+    {
+        if(current_MoveSpeed != moveSpeed.float_value)
+        {
+            current_MoveSpeed = moveSpeed.float_value;
+            UpdateMoveSpeed();
+        }
     }
 
     public void SetDestination(Vector3 destinationPosition)

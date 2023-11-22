@@ -51,7 +51,7 @@ public class StatsGroup
         stats.Add(new StatsValue(Statistic.Damage, 20));
         stats.Add(new StatsValue(Statistic.Armor, 5));
         stats.Add(new StatsValue(Statistic.AttackSpeed, 1f));
-        stats.Add(new StatsValue(Statistic.MoveSpeed, 1f));
+        stats.Add(new StatsValue(Statistic.MoveSpeed, 2f));
     }
 
     internal StatsValue Get(Statistic statisticToGet)
@@ -133,8 +133,6 @@ public class Character : MonoBehaviour
         damage = ApplyDefence(damage);
 
         lifePool.currentValue -= damage;
-
-        Debug.Log("Enemy life pool:" + lifePool.currentValue.ToString());
 
         CheckDeath();
     }
