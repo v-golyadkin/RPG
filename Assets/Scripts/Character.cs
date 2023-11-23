@@ -116,6 +116,7 @@ public class Character : MonoBehaviour
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatsGroup stats;
     public ValuePool lifePool;
+    public bool isDead;
 
     private void Start()
     {
@@ -153,7 +154,7 @@ public class Character : MonoBehaviour
     {
         if(lifePool.currentValue <= 0)
         {
-            Debug.Log("Enemy is dead");
+            isDead = true;
         }
     }
 

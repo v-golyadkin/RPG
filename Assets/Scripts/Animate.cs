@@ -9,10 +9,13 @@ public class Animate : MonoBehaviour
 
     NavMeshAgent agent;
 
+    Character character;
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        character = GetComponent<Character>();
     }
 
     private void Update()
@@ -20,5 +23,6 @@ public class Animate : MonoBehaviour
         float motion = agent.velocity.magnitude;
 
         animator.SetFloat("motion", motion);
+        animator.SetBool("defeated", character.isDead);
     }
 }
