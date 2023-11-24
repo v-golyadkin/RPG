@@ -921,7 +921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867167983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42415538, y: 0.000000015581922, z: -0.0000000072981816, w: 0.90558946}
+  m_LocalRotation: {x: 0.42415538, y: -0.00000001558191, z: 0.0000000072981776, w: 0.90558946}
   m_LocalPosition: {x: 0, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1137,7 +1137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42415538, y: 0.000000015581922, z: -0.0000000072981816, w: 0.90558946}
+  m_LocalRotation: {x: 0.42415538, y: -0.00000001558191, z: 0.0000000072981776, w: 0.90558946}
   m_LocalPosition: {x: 0, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1336,6 +1336,7 @@ GameObject:
   - component: {fileID: 1050953468}
   - component: {fileID: 1050953469}
   - component: {fileID: 1050953470}
+  - component: {fileID: 1050953471}
   m_Layer: 0
   m_Name: ---GameManager---
   m_TagString: Untagged
@@ -1386,6 +1387,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 
+--- !u!114 &1050953471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050953467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e091460032bc80043a766c469d57382a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 906469482}
 --- !u!1 &1162006222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,6 +2349,10 @@ PrefabInstance:
       propertyPath: textOnScreen
       value: 
       objectReference: {fileID: 1019297590}
+    - target: {fileID: 108551230193660110, guid: c7f111351f00d8c4495776a659ea4f4d, type: 3}
+      propertyPath: interactRange
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 657463755137070197, guid: c7f111351f00d8c4495776a659ea4f4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
