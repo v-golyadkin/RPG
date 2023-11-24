@@ -155,6 +155,7 @@ public class Character : MonoBehaviour
         if(lifePool.currentValue <= 0)
         {
             isDead = true;
+            GetComponent<CharacterDefeatHandler>().Defeated();
         }
     }
 

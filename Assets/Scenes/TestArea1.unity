@@ -3228,6 +3228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734098aa3a762134a93831219b956e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_MoveSpeed: 3
 --- !u!4 &5886221776057519138
 Transform:
   m_ObjectHideFlags: 0
@@ -3572,6 +3573,7 @@ MonoBehaviour:
       integer_value: 0
       float_value: 0
     currentValue: 0
+  isDead: 0
 --- !u!1 &6958044794826250857
 GameObject:
   m_ObjectHideFlags: 0
