@@ -15,7 +15,11 @@ public class CharacterDefeatHandler : MonoBehaviour
     InteractInput interactInput;
     PlayerCharacterInput playerCharacterInput;
     CharacterMovementInput characterMovementInput;
-    
+    Character character;
+
+    [SerializeField] bool player = false;
+    [SerializeField] GameObject defeatedPanel;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -26,6 +30,7 @@ public class CharacterDefeatHandler : MonoBehaviour
         interactInput = GetComponent<InteractInput>();
         playerCharacterInput = GetComponent<PlayerCharacterInput>();
         characterMovementInput = GetComponent<CharacterMovementInput>();
+        character = GetComponent<Character>();
     }
 
     public void Defeated()
@@ -61,6 +66,11 @@ public class CharacterDefeatHandler : MonoBehaviour
         {
             characterMovementInput.enabled = false;
         }
+
+        if (defeatedPanel != null)
+        {
+            defeatedPanel.SetActive(true);
+        }
     }
 
     internal void Respawn()
@@ -95,6 +105,16 @@ public class CharacterDefeatHandler : MonoBehaviour
         if (characterMovementInput != null)
         {
             characterMovementInput.enabled = true;
+        }
+
+        if (defeatedPanel != null)
+        {
+            defeatedPanel.SetActive(false);
+        }
+
+        if(character != null)
+        {
+            character.Restore();
         }
     }
 }
