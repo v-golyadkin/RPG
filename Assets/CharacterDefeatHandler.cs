@@ -35,86 +35,58 @@ public class CharacterDefeatHandler : MonoBehaviour
 
     public void Defeated()
     {
-        agent.isStopped = true;
-        agent.enabled = false;
-
-        objectCollider.enabled = false;
-
-        if (aiEnemy != null)
-        {
-            aiEnemy.enabled = false;
-        }
-
-
-
-        if(attackInput != null)
-        {
-            attackInput.enabled = false;
-        }
-
-        if(interactInput != null)
-        {
-            interactInput.enabled = false;
-        }
-
-        if(playerCharacterInput != null)
-        {
-            playerCharacterInput.enabled = false;
-        }
-
-        if (characterMovementInput != null)
-        {
-            characterMovementInput.enabled = false;
-        }
-
-        if (defeatedPanel != null)
-        {
-            defeatedPanel.SetActive(true);
-        }
+        SetState(false);
     }
 
     internal void Respawn()
     {
-        agent.isStopped = false;
-        agent.enabled = true;
+        SetState(true);
+    }
 
-        objectCollider.enabled = true;
+    void SetState(bool state)
+    {
+        agent.isStopped = !state;
+        agent.enabled = state;
+
+        objectCollider.enabled = state;
 
         if (aiEnemy != null)
         {
-            aiEnemy.enabled = true;
+            aiEnemy.enabled = state;
         }
 
 
 
         if (attackInput != null)
         {
-            attackInput.enabled = true;
+            attackInput.enabled = state;
         }
 
         if (interactInput != null)
         {
-            interactInput.enabled = true;
+            interactInput.enabled = state;
         }
 
         if (playerCharacterInput != null)
         {
-            playerCharacterInput.enabled = true;
+            playerCharacterInput.enabled = state;
         }
 
         if (characterMovementInput != null)
         {
-            characterMovementInput.enabled = true;
+            characterMovementInput.enabled = state;
         }
 
         if (defeatedPanel != null)
         {
-            defeatedPanel.SetActive(false);
+            defeatedPanel.SetActive(!state);
         }
-
-        if(character != null)
+        if(state == true)
         {
-            character.Restore();
+            if (character != null)
+            {
+                character.Restore();
+            }
         }
     }
 }
