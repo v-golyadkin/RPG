@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -59,6 +60,41 @@ public class CharacterDefeatHandler : MonoBehaviour
         if (characterMovementInput != null)
         {
             characterMovementInput.enabled = false;
+        }
+    }
+
+    internal void Respawn()
+    {
+        agent.isStopped = false;
+        agent.enabled = true;
+
+        objectCollider.enabled = true;
+
+        if (aiEnemy != null)
+        {
+            aiEnemy.enabled = true;
+        }
+
+
+
+        if (attackInput != null)
+        {
+            attackInput.enabled = true;
+        }
+
+        if (interactInput != null)
+        {
+            interactInput.enabled = true;
+        }
+
+        if (playerCharacterInput != null)
+        {
+            playerCharacterInput.enabled = true;
+        }
+
+        if (characterMovementInput != null)
+        {
+            characterMovementInput.enabled = true;
         }
     }
 }
