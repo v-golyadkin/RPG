@@ -33,6 +33,7 @@ public class PlayerCharacterInput : MonoBehaviour
                 return;
             }
 
+            interactInput.ResetState();
             characterMovementInput.MoveInput();
         }
     }

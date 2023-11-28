@@ -10,9 +10,12 @@ public class InteractHandler : MonoBehaviour
 
     [SerializeField] float interactRange = 0.5f;
 
+    Inventory inventory;
+
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        inventory = GetComponent<Inventory>();
     }
 
     void Update()
@@ -29,14 +32,19 @@ public class InteractHandler : MonoBehaviour
 
         if (distance < interactRange)
         {
-            interactedObject.Interact();
+            interactedObject.Interact(inventory);
             characterMovement.Stop();
 
-            interactedObject = null;
+            ResetState();
         }
         else
         {
             characterMovement.SetDestination(interactedObject.transform.position);
         }
+    }
+
+    public void ResetState()
+    {
+        interactedObject = null;
     }
 }

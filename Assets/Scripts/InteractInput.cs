@@ -83,4 +83,9 @@ public class InteractInput : MonoBehaviour
     {
         interactHandler.interactedObject = hoveringOverObject;
     }
+
+    internal void ResetState()
+    {
+        interactHandler.ResetState();
+    }
 }
