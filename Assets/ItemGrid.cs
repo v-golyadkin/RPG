@@ -24,9 +24,16 @@ public class ItemGrid : MonoBehaviour
     private void Start()
     {
         Init(gridSizeWidth, gridSizeHeight);
+        CreateTestItem(2, 2);
+        CreateTestItem(1, 6);
+        CreateTestItem(4, 0);
+    }
+
+    private void CreateTestItem(int x, int y)
+    {
         GameObject itemTest = Instantiate(inventoryItemPrefab);
         InventoryItem inventoryItemTest = itemTest.GetComponent<InventoryItem>();
-        PlaceItem(inventoryItemTest, 2, 2);
+        PlaceItem(inventoryItemTest, x, y);
     }
 
     private void Init(int width, int height)
@@ -67,7 +74,7 @@ public class ItemGrid : MonoBehaviour
         return tileGridPosition;
     }
 
-    internal InventoryItem PickUpItem(Vector2Int tilePositionOnGrid)
+    public InventoryItem PickUpItem(Vector2Int tilePositionOnGrid)
     {
         InventoryItem pickedItem = inventoryItemGrid[tilePositionOnGrid.x, tilePositionOnGrid.y];
         inventoryItemGrid[tilePositionOnGrid.x, tilePositionOnGrid.y] = null;
