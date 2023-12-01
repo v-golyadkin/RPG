@@ -8,9 +8,15 @@ public class InventoryController : MonoBehaviour
 
     Vector2Int positionOnGrid;
     InventoryItem selectedItem;
+    RectTransform selectedItemRectTransform;
 
     private void Update()
     {
+        if(selectedItem != null)
+        {
+            selectedItemRectTransform.position = Input.mousePosition;
+        }
+
         if (selectedItemGrid == null) { return; }
 
         if (Input.GetMouseButtonDown(0))
@@ -19,11 +25,13 @@ public class InventoryController : MonoBehaviour
             if(selectedItem == null)
             {
                 selectedItem = selectedItemGrid.PickUpItem(positionOnGrid);
+                selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
             }
             else
             {
                 selectedItemGrid.PlaceItem(selectedItem, positionOnGrid.x, positionOnGrid.y);
                 selectedItem = null;
+                selectedItemRectTransform = null;
             }
         }
     }
