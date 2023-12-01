@@ -6,13 +6,25 @@ public class InventoryController : MonoBehaviour
 {
     [HideInInspector] public ItemGrid selectedItemGrid;
 
+    Vector2Int positionOnGrid;
+    InventoryItem selectedItem;
+
     private void Update()
     {
         if (selectedItemGrid == null) { return; }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
+            positionOnGrid = selectedItemGrid.GetTileGridPosition(Input.mousePosition);
+            if(selectedItem == null)
+            {
+                selectedItem = selectedItemGrid.PickUpItem(positionOnGrid);
+            }
+            else
+            {
+                selectedItemGrid.PlaceItem(selectedItem, positionOnGrid.x, positionOnGrid.y);
+                selectedItem = null;
+            }
         }
     }
 

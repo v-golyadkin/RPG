@@ -66,4 +66,11 @@ public class ItemGrid : MonoBehaviour
 
         return tileGridPosition;
     }
+
+    internal InventoryItem PickUpItem(Vector2Int tilePositionOnGrid)
+    {
+        InventoryItem pickedItem = inventoryItemGrid[tilePositionOnGrid.x, tilePositionOnGrid.y];
+        inventoryItemGrid[tilePositionOnGrid.x, tilePositionOnGrid.y] = null;
+        return pickedItem;
+    }
 }
