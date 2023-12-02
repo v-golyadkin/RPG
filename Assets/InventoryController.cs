@@ -10,9 +10,17 @@ public class InventoryController : MonoBehaviour
     InventoryItem selectedItem;
     RectTransform selectedItemRectTransform;
 
+    [SerializeField] List<ItemData> itemDatas;
+    [SerializeField] GameObject inventoryItemPrefab;
+
     private void Update()
     {
-        if(selectedItem != null)
+        ProcessMouseInput();
+    }
+
+    private void ProcessMouseInput()
+    {
+        if (selectedItem != null)
         {
             selectedItemRectTransform.position = Input.mousePosition;
         }
@@ -22,7 +30,7 @@ public class InventoryController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             positionOnGrid = selectedItemGrid.GetTileGridPosition(Input.mousePosition);
-            if(selectedItem == null)
+            if (selectedItem == null)
             {
                 selectedItem = selectedItemGrid.PickUpItem(positionOnGrid);
                 selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
@@ -35,5 +43,4 @@ public class InventoryController : MonoBehaviour
             }
         }
     }
-
 }
