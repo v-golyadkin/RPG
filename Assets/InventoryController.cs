@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,27 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] List<ItemData> itemDatas;
     [SerializeField] GameObject inventoryItemPrefab;
+    [SerializeField] Transform targetCanvas;
 
     private void Update()
     {
         ProcessMouseInput();
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AddRandomItemToInventory();
+        }
+    }
+
+    private void AddRandomItemToInventory()
+    {
+        GameObject newItemGO = Instantiate(inventoryItemPrefab, targetCanvas);
+
+        InventoryItem newInventoryItem = newItemGO.GetComponent<InventoryItem>();
+        selectedItem = newInventoryItem;
+
+        RectTransform newItemRectTransform = newItemGO.GetComponent<RectTransform>();
+        newItemRectTransform.SetParent(targetCanvas);
     }
 
     private void ProcessMouseInput()
