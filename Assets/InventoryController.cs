@@ -55,7 +55,10 @@ public class InventoryController : MonoBehaviour
             if (selectedItem == null)
             {
                 selectedItem = selectedItemGrid.PickUpItem(positionOnGrid);
-                selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
+                if(selectedItem != null)
+                {
+                    selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
+                }
             }
             else
             {
