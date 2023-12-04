@@ -27,13 +27,17 @@ public class InventoryController : MonoBehaviour
 
     private void AddRandomItemToInventory()
     {
-        GameObject newItemGO = Instantiate(inventoryItemPrefab, targetCanvas);
+        GameObject newItemGO = Instantiate(inventoryItemPrefab);
 
         InventoryItem newInventoryItem = newItemGO.GetComponent<InventoryItem>();
         selectedItem = newInventoryItem;
 
         RectTransform newItemRectTransform = newItemGO.GetComponent<RectTransform>();
         newItemRectTransform.SetParent(targetCanvas);
+        selectedItemRectTransform = newItemRectTransform;
+
+        int selectedItemId = UnityEngine.Random.Range(0, itemDatas.Count);
+        newInventoryItem.Set(itemDatas[selectedItemId]);
     }
 
     private void ProcessMouseInput()

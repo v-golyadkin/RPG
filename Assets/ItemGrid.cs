@@ -8,8 +8,8 @@ public class ItemGrid : MonoBehaviour
 {
     InventoryItem[,] inventoryItemGrid;
 
-    const float TileSizeWidth = 32f;
-    const float TileSizeHeight = 32f;
+    public const float TileSizeWidth = 32f;
+    public const float TileSizeHeight = 32f;
 
     [SerializeField] int gridSizeWidth;
     [SerializeField] int gridSizeHeight;
@@ -24,16 +24,6 @@ public class ItemGrid : MonoBehaviour
     private void Start()
     {
         Init(gridSizeWidth, gridSizeHeight);
-        CreateTestItem(2, 2);
-        CreateTestItem(1, 6);
-        CreateTestItem(4, 0);
-    }
-
-    private void CreateTestItem(int x, int y)
-    {
-        GameObject itemTest = Instantiate(inventoryItemPrefab);
-        InventoryItem inventoryItemTest = itemTest.GetComponent<InventoryItem>();
-        PlaceItem(inventoryItemTest, x, y);
     }
 
     private void Init(int width, int height)
@@ -55,12 +45,26 @@ public class ItemGrid : MonoBehaviour
         RectTransform itemRectTransform = itemToPlace.GetComponent<RectTransform>();
         itemRectTransform.SetParent(transform);
 
-        inventoryItemGrid[x, y] = itemToPlace;
+        for(int ix = 0; ix < itemToPlace.itemData.sizeWidth; ix++)
+        {
+            for(int iy = 0; iy < itemToPlace.itemData.sizeHeight; iy++)
+            {
+                inventoryItemGrid[x + ix, y + iy] = itemToPlace;
+            }
+        }
 
+        itemToPlace.positionOnGridX = x;
+        itemToPlace.positionOnGridY = y;
+
+        itemRectTransform.localPosition = CalculatePositionOfObjectOnGrid(itemToPlace, x, y); 
+    }
+
+    private static Vector2 CalculatePositionOfObjectOnGrid(InventoryItem item, int x, int y)
+    {
         Vector2 positionOnGrid = new Vector2();
-        positionOnGrid.x = TileSizeWidth * x + TileSizeWidth / 2;
-        positionOnGrid.y = -(TileSizeHeight * y + TileSizeHeight / 2);
-        itemRectTransform.localPosition = positionOnGrid;
+        positionOnGrid.x = TileSizeWidth * x + TileSizeWidth * item.itemData.sizeWidth / 2;
+        positionOnGrid.y = -(TileSizeHeight * y + TileSizeHeight * item.itemData.sizeHeight / 2);
+        return positionOnGrid;
     }
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
@@ -77,7 +81,18 @@ public class ItemGrid : MonoBehaviour
     public InventoryItem PickUpItem(Vector2Int tilePositionOnGrid)
     {
         InventoryItem pickedItem = inventoryItemGrid[tilePositionOnGrid.x, tilePositionOnGrid.y];
-        inventoryItemGrid[tilePositionOnGrid.x, tilePositionOnGrid.y] = null;
+
+        if (pickedItem == null) { return null; }
+
+        for(int ix = 0; ix< pickedItem.itemData.sizeWidth; ix++)
+        {
+            for(int iy = 0;iy< pickedItem.itemData.sizeHeight; iy++)
+            {
+                inventoryItemGrid[pickedItem.positionOnGridX + ix, pickedItem.positionOnGridY + iy] = null;
+            }
+        }
+
+
         return pickedItem;
     }
 }
