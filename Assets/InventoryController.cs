@@ -16,13 +16,41 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject inventoryItemPrefab;
     [SerializeField] Transform targetCanvas;
 
+    [SerializeField] InventoryHighlight inventoryHighlight;
+
+    InventoryItem itemToHighlight;
+
     private void Update()
     {
         ProcessMouseInput();
 
+        if (selectedItemGrid == null) { return; }
+
+        HandleHighlight();
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             AddRandomItemToInventory();
+        }
+    }
+
+    private void HandleHighlight()
+    {
+        Vector2Int positionOnGrid = GetTileGridPosition();
+
+        if(selectedItem == null)
+        {
+            itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
+
+            if(itemToHighlight != null)
+            {
+                inventoryHighlight.SetSize(itemToHighlight);
+                inventoryHighlight.SetPosition(selectedItemGrid, itemToHighlight);
+            }
+        }
+        else
+        {
+
         }
     }
 
