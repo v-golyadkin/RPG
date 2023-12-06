@@ -22,4 +22,10 @@ public class InventoryHighlight : MonoBehaviour
 
         highliter.localPosition = position;
     }
+    
+    public void Show(bool set)
+    {
+        highliter.gameObject.SetActive(set);    
+    }
+
 }
