@@ -16,13 +16,23 @@ public class InventoryHighlight : MonoBehaviour
 
     public void SetPosition(ItemGrid targetGrid, InventoryItem targetItem)
     {
-        highliter.SetParent(targetGrid.transform);
-
         Vector2 position = targetGrid.CalculatePositionOfObjectOnGrid(targetItem, targetItem.positionOnGridX, targetItem.positionOnGridY);
 
         highliter.localPosition = position;
     }
-    
+
+    public void SetParent(ItemGrid targetGrid)
+    {
+        highliter.SetParent(targetGrid.transform);
+    }
+
+    public void SetPosition(ItemGrid targetGrid, InventoryItem targetItem, int posX, int posY)
+    {
+        Vector2 pos = targetGrid.CalculatePositionOfObjectOnGrid(targetItem, posX, posY);
+
+        highliter.localPosition = pos;
+    }
+
     public void Show(bool set)
     {
         highliter.gameObject.SetActive(set);    

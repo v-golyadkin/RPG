@@ -38,6 +38,8 @@ public class InventoryController : MonoBehaviour
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
 
+        inventoryHighlight.SetParent(selectedItemGrid);
+
         if(selectedItem == null)
         {
             itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
@@ -55,7 +57,9 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-
+            inventoryHighlight.Show(true);
+            inventoryHighlight.SetSize(selectedItem);
+            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
     }
 
