@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [HideInInspector] public ItemGrid selectedItemGrid;
+    [HideInInspector] private ItemGrid selectedItemGrid;
 
     Vector2Int positionOnGrid;
     InventoryItem selectedItem;
@@ -20,6 +20,16 @@ public class InventoryController : MonoBehaviour
 
     InventoryItem itemToHighlight;
 
+    public ItemGrid SelectedItemGrid
+    {
+        get => selectedItemGrid;
+        set
+        {
+            selectedItemGrid = value;
+            inventoryHighlight.SetParent(value);
+        }
+    }
+
     private void Update()
     {
         ProcessMouseInput();
@@ -30,15 +40,41 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            AddRandomItemToInventory();
+            CreateRandomItem();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            InsertRandomItem();
         }
     }
 
+    private void InsertRandomItem()
+    {
+        if(selectedItemGrid == null) { return; }
+
+        CreateRandomItem();
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
+    }
+
+    private void InsertItem(InventoryItem itemToInsert)
+    {
+        Vector2Int? posOnGrid = SelectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid == null) { return; }
+
+        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+    }
+
+    Vector2Int oldPosition;
     private void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
+        if (positionOnGrid == oldPosition) { return; }
 
-        inventoryHighlight.SetParent(selectedItemGrid);
+        oldPosition = positionOnGrid;
 
         if(selectedItem == null)
         {
@@ -63,7 +99,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private void AddRandomItemToInventory()
+    private void CreateRandomItem()
     {
         GameObject newItemGO = Instantiate(inventoryItemPrefab);
 

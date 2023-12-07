@@ -23,6 +23,7 @@ public class InventoryHighlight : MonoBehaviour
 
     public void SetParent(ItemGrid targetGrid)
     {
+        if(targetGrid == null) { return; }
         highliter.SetParent(targetGrid.transform);
     }
 
