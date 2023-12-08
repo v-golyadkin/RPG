@@ -74,6 +74,8 @@ public class InventoryController : MonoBehaviour
         Vector2Int positionOnGrid = GetTileGridPosition();
         if (positionOnGrid == oldPosition) { return; }
 
+        if (selectedItemGrid.PositionCheck(positionOnGrid.x, positionOnGrid.y) == false) { return; }
+
         oldPosition = positionOnGrid;
 
         if(selectedItem == null)
