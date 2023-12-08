@@ -157,16 +157,16 @@ public class ItemGrid : MonoBehaviour
         return inventoryItemGrid[x, y];
     }
 
-    public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)
+    public Vector2Int? FindSpaceForObject(ItemData itemData)
     {
-        int height = gridSizeHeight - itemToInsert.itemData.sizeHeight + 1;
-        int width = gridSizeWidth - itemToInsert.itemData.sizeWidth + 1;
+        int height = gridSizeHeight - itemData.sizeHeight + 1;
+        int width = gridSizeWidth - itemData.sizeWidth + 1;
 
         for(int y = 0; y < height; y++)
         {
             for(int x = 0; x < width; x++)
             {
-                if(CheckAvailableSpace(x, y, itemToInsert.itemData.sizeWidth, itemToInsert.itemData.sizeHeight) == true)
+                if(CheckAvailableSpace(x, y, itemData.sizeWidth, itemData.sizeHeight) == true)
                 {
                     return new Vector2Int(x, y);
                 }

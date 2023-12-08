@@ -61,7 +61,7 @@ public class InventoryController : MonoBehaviour
 
     private void InsertItem(InventoryItem itemToInsert)
     {
-        Vector2Int? posOnGrid = SelectedItemGrid.FindSpaceForObject(itemToInsert);
+        Vector2Int? posOnGrid = SelectedItemGrid.FindSpaceForObject(itemToInsert.itemData);
 
         if (posOnGrid == null) { return; }
 
@@ -103,6 +103,13 @@ public class InventoryController : MonoBehaviour
 
     private void CreateRandomItem()
     {
+        int selectedItemId = UnityEngine.Random.Range(0, itemDatas.Count);
+
+        CreateNewInventoryItem(itemDatas[selectedItemId]);
+    }
+
+    public InventoryItem CreateNewInventoryItem(ItemData itemData)
+    {
         GameObject newItemGO = Instantiate(inventoryItemPrefab);
 
         InventoryItem newInventoryItem = newItemGO.GetComponent<InventoryItem>();
@@ -112,8 +119,9 @@ public class InventoryController : MonoBehaviour
         newItemRectTransform.SetParent(targetCanvas);
         selectedItemRectTransform = newItemRectTransform;
 
-        int selectedItemId = UnityEngine.Random.Range(0, itemDatas.Count);
-        newInventoryItem.Set(itemDatas[selectedItemId]);
+        newInventoryItem.Set(itemData);
+
+        return newInventoryItem;
     }
 
     private void ProcessMouseInput()
