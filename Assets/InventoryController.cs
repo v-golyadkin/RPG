@@ -113,7 +113,7 @@ public class InventoryController : MonoBehaviour
         GameObject newItemGO = Instantiate(inventoryItemPrefab);
 
         InventoryItem newInventoryItem = newItemGO.GetComponent<InventoryItem>();
-        selectedItem = newInventoryItem;
+
 
         RectTransform newItemRectTransform = newItemGO.GetComponent<RectTransform>();
         newItemRectTransform.SetParent(targetCanvas);
@@ -122,6 +122,13 @@ public class InventoryController : MonoBehaviour
         newInventoryItem.Set(itemData);
 
         return newInventoryItem;
+    }
+
+    public void SelectItem(InventoryItem inventoryItem)
+    {
+        selectedItem = inventoryItem;
+        selectedItemRectTransform = inventoryItem.GetComponent<RectTransform>();
+
     }
 
     private void ProcessMouseInput()

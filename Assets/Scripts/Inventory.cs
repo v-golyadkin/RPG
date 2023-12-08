@@ -8,6 +8,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] ItemGrid mainInventoryItemGrid;
     [SerializeField] InventoryController inventoryController;
 
+    private void Start()
+    {
+        mainInventoryItemGrid.Init();
+    }
+
     public void AddCurrency(int amount)
     {
         currency += amount;

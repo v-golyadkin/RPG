@@ -21,23 +21,15 @@ public class ItemGrid : MonoBehaviour
 
     [SerializeField] GameObject inventoryItemPrefab;
 
-    private void Start()
-    {
-        Init(gridSizeWidth, gridSizeHeight);
-    }
-
-    private void Init(int width, int height)
-    {
-        inventoryItemGrid = new InventoryItem[width, height];
-        Vector2 size = new Vector2();
-        size.x = TileSizeWidth * width;
-        size.y = TileSizeHeight * height;
-        rectTransform.sizeDelta = size;
-    }
-
-    private void Awake()
+    public void Init()
     {
         rectTransform = GetComponent<RectTransform>();
+
+        inventoryItemGrid = new InventoryItem[gridSizeWidth, gridSizeHeight];
+        Vector2 size = new Vector2();
+        size.x = TileSizeWidth * gridSizeWidth;
+        size.y = TileSizeHeight * gridSizeHeight;
+        rectTransform.sizeDelta = size;
     }
 
     public void PlaceItem(InventoryItem itemToPlace, int x, int y)
