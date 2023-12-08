@@ -114,10 +114,8 @@ public class InventoryController : MonoBehaviour
 
         InventoryItem newInventoryItem = newItemGO.GetComponent<InventoryItem>();
 
-
         RectTransform newItemRectTransform = newItemGO.GetComponent<RectTransform>();
         newItemRectTransform.SetParent(targetCanvas);
-        selectedItemRectTransform = newItemRectTransform;
 
         newInventoryItem.Set(itemData);
 
