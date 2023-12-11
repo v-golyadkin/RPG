@@ -105,7 +105,8 @@ public class InventoryController : MonoBehaviour
     {
         int selectedItemId = UnityEngine.Random.Range(0, itemDatas.Count);
 
-        CreateNewInventoryItem(itemDatas[selectedItemId]);
+        InventoryItem newItem = CreateNewInventoryItem(itemDatas[selectedItemId]);
+        SelectItem(newItem);
     }
 
     public InventoryItem CreateNewInventoryItem(ItemData itemData)
