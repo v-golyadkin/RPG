@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     [HideInInspector] private ItemGrid selectedItemGrid;
+    private EquipmentSlot selectedItemSlot;
 
     Vector2Int positionOnGrid;
     InventoryItem selectedItem;
@@ -19,6 +20,15 @@ public class InventoryController : MonoBehaviour
     [SerializeField] InventoryHighlight inventoryHighlight;
 
     InventoryItem itemToHighlight;
+
+    public EquipmentSlot SelectedItemSlot
+    {
+        get => selectedItemSlot;
+        set 
+        {
+            selectedItemSlot = value;
+        }
+    }
 
     public ItemGrid SelectedItemGrid
     {
@@ -103,6 +113,7 @@ public class InventoryController : MonoBehaviour
 
     private void CreateRandomItem()
     {
+        if (selectedItem != null) { return; }
         int selectedItemId = UnityEngine.Random.Range(0, itemDatas.Count);
 
         InventoryItem newItem = CreateNewInventoryItem(itemDatas[selectedItemId]);
