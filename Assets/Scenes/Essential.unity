@@ -2446,6 +2446,7 @@ GameObject:
   - component: {fileID: 1441844321}
   - component: {fileID: 1441844320}
   - component: {fileID: 1441844319}
+  - component: {fileID: 1441844323}
   m_Layer: 5
   m_Name: WeaponSlot
   m_TagString: Untagged
@@ -2484,6 +2485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d989eafb145db4c853b5bd350a149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipmentSlot: 1
 --- !u!114 &1441844320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2566,6 +2568,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441844317}
   m_CullTransparentMesh: 1
+--- !u!114 &1441844323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441844317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f6003b568aab84c85c8ee3911dfe70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1496884858
 GameObject:
   m_ObjectHideFlags: 0
