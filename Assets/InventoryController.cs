@@ -87,7 +87,11 @@ public class InventoryController : MonoBehaviour
             return;
         }
 
-        if(selectedItemSlot == null) { return; }
+        if(selectedItemSlot == null) 
+        {
+            inventoryHighlight.Show(false);
+            return; 
+        }
 
         Vector2Int positionOnGrid = GetTileGridPosition();
         if (positionOnGrid == oldPosition) { return; }
