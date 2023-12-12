@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class EquipmentItemSlotInteract : MonoBehaviour
+public class EquipmentItemSlotInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    InventoryController inventoryController;
+    EquipmentItemSlot slot;
+
+    void Awake()
     {
-        
+        inventoryController = FindObjectOfType<InventoryController>();
+        slot = GetComponent<EquipmentItemSlot>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        inventoryController.SelectedItemSlot = slot;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        inventoryController.SelectedItemSlot = null;
     }
 }
